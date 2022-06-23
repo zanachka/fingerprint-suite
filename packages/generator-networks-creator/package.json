@@ -1,31 +1,29 @@
 {
-  "name": "generator-networks-creator",
-  "version": "1.0.0",
-  "engines": {
-    "node": ">=16.0.0"
-  },
-  "private": true,
-  "files": [
-      "dist"
-  ],
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
-  "exports": {
-      ".": {
-          "import": "./dist/index.mjs",
-          "require": "./dist/index.js"
-      }
-  },
-  "dependencies": {
-    "csv-parse": "^5.1.0",
-    "danfojs-node": "^1.1.1",
-    "generative-bayesian-network": "^2.0.0"
-  },
-  "scripts": {
-    "build": "npm run clean && npm run compile && npm run copyfiles",
-    "clean": "rimraf ./dist",
-    "compile": "tsc -p tsconfig.build.json && gen-esm-wrapper ./dist/index.js ./dist/index.mjs",
-    "copyfiles": "cp -r ./src/network_structures ./dist"
-  }
+    "name": "generator-networks-creator",
+    "version": "1.0.0",
+    "engines": {
+        "node": ">=16.0.0"
+    },
+    "private": true,
+    "main": "dist/index.js",
+    "module": "dist/index.mjs",
+    "types": "dist/index.d.ts",
+    "exports": {
+        ".": {
+            "import": "./dist/index.mjs",
+            "require": "./dist/index.js",
+            "types": "./dist/index.d.ts"
+        }
+    },
+    "dependencies": {
+        "generative-bayesian-network": "^2.0.0",
+        "node-fetch": "^2.6.7"
+    },
+    "scripts": {
+        "build": "npm run compile && npm run copyfiles",
+        "clean": "rimraf ./dist",
+        "compile": "tsc -p tsconfig.build.json && gen-esm-wrapper ./dist/index.js ./dist/index.mjs",
+        "copyfiles": "cp -r ./src/network_structures ./dist",
+        "copy": "ts-node -T ../../scripts/copy.ts"
+    }
 }
